@@ -3,14 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "chokidar": "^3.5.2",
+    "firebase": "^9.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
-    "react-scripts": "4.0.3"
+    "react-scripts": "^4.0.3",
+    "watchpack": "^2.2.0"
+  },
+  "env": {
+    "browser": true
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,7 +27,46 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false
+    },
+    "extends": [
+      "react-app",
+      "standard",
+      "standard-jsx",
+      "standard-react"
+    ],
+    "rules": {
+      "yoda": "error",
+      "space-before-function-paren": "off",
+      "quotes": [
+        "error",
+        "double",
+        {
+          "allowTemplateLiterals": true,
+          "avoidEscape": true
+        }
+      ],
+      "jsx-quotes": [
+        "error",
+        "prefer-double"
+      ],
+      "prefer-const": "error",
+      "no-var": "error",
+      "semi": [
+        "error",
+        "always"
+      ],
+      "eqeqeq": "warn",
+      "no-unused-vars": "warn",
+      "react/jsx-curly-newline": "off"
+    }
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-syntax-jsx"
+    ]
   },
   "browserslist": {
     "production": [
@@ -32,5 +79,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.4",
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard-jsx": "^10.0.0",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.25.1"
   }
 }
