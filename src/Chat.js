@@ -8,6 +8,8 @@ import Message from "./Message";
 import { useSelector } from "react-redux";
 import { selectChannelId, selectChannelName } from "./features/appSlice";
 import { selectUser } from "./features/userSlice";
+import { collection, doc, addDoc, serverTimestamp } from "firebase/firestore";
+import db from "./firebase";
 import "./Chat.css";
 
 function Chat() {
@@ -16,6 +18,21 @@ function Chat() {
   const channelName = useSelector(selectChannelName);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+
+    const channelQuery = collection(db, "channels");
+    const messageQuery = collection(db, "messages");
+    const channelRef = doc(db, channelQuery, channelId);
+    addDoc(db, messageQuery, channelRef, {
+      timestamp: serverTimestamp(),
+      message: input,
+      user: user
+    });
+
+    setInput("");
+  };
 
   return (
     <div className="chat">
