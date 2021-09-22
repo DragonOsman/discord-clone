@@ -23,9 +23,8 @@ function Chat() {
     e.preventDefault();
 
     const channelQuery = collection(db, "channels");
-    const messageQuery = collection(db, "messages");
     const channelRef = doc(db, channelQuery, channelId);
-    addDoc(db, messageQuery, channelRef, {
+    addDoc(channelRef, {
       timestamp: serverTimestamp(),
       message: input,
       user: user
@@ -36,9 +35,16 @@ function Chat() {
 
   return (
     <div className="chat">
-      <ChatHeader channelName={channelName} channelId={channelId} />
+      <ChatHeader channelName={channelName} />
       <div className="chat__messages">
-        <Message />
+        {messages.map((message) => (
+          <Message
+            key={message.id}
+            timestamp={message.timestamp}
+            message={message.message}
+            user={message.user}
+          />
+        ))}
       </div>
       <div className="chat__input">
         <AddCircleIcon fontSize="large" />

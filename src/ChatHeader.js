@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import EditLocationRoundedIcon from "@material-ui/icons/EditLocationRounded";
 import PeopleAltRoundedIcon from "@material-ui/icons/PeopleAltRounded";
@@ -38,7 +39,7 @@ function ChatHeader({ channelName }) {
   );
 }
 ChatHeader.propTypes = {
-  channelName: { type: String, required: false }
+  channelName: PropTypes.string
 };
 
 export default ChatHeader;
